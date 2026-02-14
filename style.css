@@ -1,0 +1,75 @@
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background-color: #000;
+    color: #c8b6ff; /* Lavender Text Color */
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.hidden { display: none !important; }
+
+.overlay {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+
+.envelope { text-align: center; cursor: pointer; animation: float 2s infinite ease-in-out; }
+
+.heart-seal {
+    width: 50px; height: 50px; background: #9d4edd; transform: rotate(-45deg);
+    margin: 0 auto 20px; position: relative;
+}
+.heart-seal::before, .heart-seal::after {
+    content: ""; width: 50px; height: 50px; background: #9d4edd; border-radius: 50%; position: absolute;
+}
+.heart-seal::before { top: -25px; left: 0; }
+.heart-seal::after { left: 25px; top: 0; }
+
+.container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.main-wrapper { display: flex; align-items: center; justify-content: center; width: 90%; }
+
+@media (min-width: 768px) {
+    .main-wrapper { flex-direction: row; gap: 60px; }
+    .tree-section { width: 450px; height: 500px; }
+    .message-section { width: 450px; }
+}
+
+@media (max-width: 767px) {
+    .main-wrapper { flex-direction: column; gap: 10px; }
+    .tree-section { width: 100%; height: 350px; }
+    .message-section { width: 100%; padding-left: 20px; }
+}
+
+.tree-section { position: relative; }
+
+.trunk, .branch {
+    position: absolute; background: #2d1b1a; border-radius: 10px;
+    bottom: 20px; left: 50%; transform-origin: bottom center;
+}
+
+.trunk { width: 6px; height: 0; transform: translateX(-50%); animation: growTrunk 2s forwards ease-in-out; }
+.branch { width: 4px; height: 0; animation: growBranch 1.5s forwards ease-in-out; }
+
+.heart {
+    position: absolute; width: 10px; height: 10px;
+    transform: rotate(-45deg); opacity: 0; animation: bloom 1s forwards;
+}
+.heart::before, .heart::after {
+    content: ""; position: absolute; width: 10px; height: 10px;
+    background-color: inherit; border-radius: 50%;
+}
+.heart::before { top: -5px; left: 0; }
+.heart::after { left: 5px; top: 0; }
+
+.line {
+    font-size: 1.1rem; margin-bottom: 12px;
+    white-space: nowrap; overflow: hidden; width: 0;
+    animation: type 2.5s steps(40) forwards;
+}
+
+@keyframes growTrunk { to { height: 160px; } }
+@keyframes growBranch { to { height: var(--h); } }
+@keyframes bloom { to { opacity: 0.85; transform: rotate(-45deg) scale(1.1); } }
+@keyframes type { from { width: 0; } to { width: 100%; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }

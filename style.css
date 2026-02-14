@@ -44,7 +44,7 @@ body, html {
 .tree-section { position: relative; }
 
 .trunk, .branch {
-    position: absolute; background: #a04039; border-radius: 10px;
+    position: absolute; background: #C68F70; border-radius: 10px;
     bottom: 20px; left: 50%; transform-origin: bottom center;
 }
 
